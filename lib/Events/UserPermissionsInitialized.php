@@ -3,23 +3,16 @@
 namespace PHPNomad\Auth\Events;
 
 use PHPNomad\Auth\Interfaces\User;
+use PHPNomad\Auth\Traits\WithUser;
 use PHPNomad\Events\Interfaces\Event;
 
 class UserPermissionsInitialized implements Event
 {
-    protected User $user;
+    use WithUser;
 
     public function __construct(User $user)
     {
         $this->user = $user;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
     }
 
     public static function getId(): string
