@@ -12,6 +12,13 @@ interface User
     public function getId();
 
     /**
+     * Gets the user's email address
+     *
+     * @return string
+     */
+    public function getEmail(): string;
+
+    /**
      * Checks if the user can perform the given action.
      *
      * @param Action $action The action to be checked.
