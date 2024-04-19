@@ -2,6 +2,8 @@
 
 namespace PHPNomad\Auth\Builders;
 
+use DateTime;
+
 class JwtPayloadBuilder
 {
     protected array $payload = [];
@@ -11,7 +13,7 @@ class JwtPayloadBuilder
      * @param string $issuer The issuer of the JWT.
      * @return $this Instance for method chaining.
      */
-    public function setIssuer($issuer)
+    public function setIssuer(string $issuer)
     {
         $this->payload['iss'] = $issuer;
         return $this;
@@ -22,7 +24,7 @@ class JwtPayloadBuilder
      * @param string $subject The subject of the JWT.
      * @return $this Instance for method chaining.
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject)
     {
         $this->payload['sub'] = $subject;
         return $this;
@@ -41,34 +43,34 @@ class JwtPayloadBuilder
 
     /**
      * Sets the 'expiration time' claim, which identifies the expiration time on or after which the JWT must not be accepted for processing.
-     * @param int $time The expiration time (UNIX timestamp).
+     * @param DateTime $time The expiration time (UNIX timestamp).
      * @return $this Instance for method chaining.
      */
-    public function setExpirationTime($time)
+    public function setExpirationTime(DateTime $time)
     {
-        $this->payload['exp'] = $time;
+        $this->payload['exp'] = $time->getTimestamp();
         return $this;
     }
 
     /**
      * Sets the 'not before' claim, which identifies the time before which the JWT must not be accepted for processing.
-     * @param int $time The time before which the JWT is not valid (UNIX timestamp).
+     * @param DateTime $time The time before which the JWT is not valid (UNIX timestamp).
      * @return $this Instance for method chaining.
      */
-    public function setNotBefore($time)
+    public function setNotBefore(DateTime $time)
     {
-        $this->payload['nbf'] = $time;
+        $this->payload['nbf'] = $time->getTimestamp();
         return $this;
     }
 
     /**
      * Sets the 'issued at' claim, which identifies the time at which the JWT was issued.
-     * @param int $time The issue time of the JWT (UNIX timestamp).
+     * @param DateTime $time The issue time of the JWT (UNIX timestamp).
      * @return $this Instance for method chaining.
      */
-    public function setIssuedAt($time)
+    public function setIssuedAt(DateTime $time)
     {
-        $this->payload['iat'] = $time;
+        $this->payload['iat'] = $time->getTimestamp();
         return $this;
     }
 
@@ -77,7 +79,7 @@ class JwtPayloadBuilder
      * @param string $jti The unique identifier for the JWT.
      * @return $this Instance for method chaining.
      */
-    public function setJWTID($jti)
+    public function setJWTID(string $jti)
     {
         $this->payload['jti'] = $jti;
         return $this;
@@ -87,10 +89,10 @@ class JwtPayloadBuilder
      * Sets a generic value to the payload.
      *
      * @param string $key
-     * @param string $value
+     * @param mixed $value
      * @return $this
      */
-    public function set(string $key, string $value)
+    public function set(string $key, $value)
     {
         $this->payload[$key] = $value;
 
