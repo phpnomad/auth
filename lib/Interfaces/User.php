@@ -2,7 +2,9 @@
 
 namespace PHPNomad\Auth\Interfaces;
 
-interface User
+use PHPNomad\Datastore\Interfaces\DataModel;
+
+interface User extends DataModel
 {
     /**
      * Returns the unique identifier of the user.
