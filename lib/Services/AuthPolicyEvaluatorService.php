@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPNomad\Auth\Traits;
+namespace PHPNomad\Auth\Services;
 
 use PHPNomad\Auth\Interfaces\AuthorizationPolicy;
 use PHPNomad\Auth\Interfaces\Session;
 use PHPNomad\Auth\Interfaces\User;
 
-trait CanEvaluateAuthorizationPolicies
+class AuthPolicyEvaluatorService
 {
     /**
      * Evaluates a set of policies for a given user and session.
